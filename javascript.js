@@ -34,4 +34,29 @@ clientesSelect.addEventListener("change", function () {
                 pedidosSelect.appendChild(option);
             });
         });
+    // Cargar último pedido
+    cargarUltimoPedido(clienteId);
 });
+
+function cargarUltimoPedido(clienteId) {
+
+    fetch(`https://localhost:7038/api/Pedidos/ultimo-pedido/${clienteId}`)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error("No tiene pedidos");
+            }
+            return res.json();
+        })
+        .then(pedido => {
+            detallePedido.innerHTML = `
+                <p><strong>ID:</strong> ${pedido.id}</p>
+                <p><strong>Fecha:</strong> ${new Date(pedido.fecha).toLocaleDateString()}</p>
+                <p><strong>Total:</strong> $${pedido.total}</p>
+            `;
+        })
+        .catch(() => {
+            detallePedido.innerHTML = `
+                <p>No tiene pedidos registrados.</p>
+            `;
+        });
+}
