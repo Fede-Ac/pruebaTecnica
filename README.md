@@ -61,4 +61,6 @@ BEGIN
 	ORDER BY Fecha DESC
 END
 
-##
+## imagen de programa en uso 
+<img width="432" height="277" alt="image" src="https://github.com/user-attachments/assets/7bb62936-248d-4015-9b76-c4e38cd5df3d" />
+
